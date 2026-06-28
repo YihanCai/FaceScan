@@ -10,6 +10,11 @@ from utils import draw_faces, draw_fps, export_json, export_csv
 from utils.align import align_face, crop_face
 
 
+def imwrite(path: str, img) -> bool:
+    _, buf = cv2.imencode(os.path.splitext(path)[1], img)
+    return buf.tofile(path)
+
+
 def get_detector(name: str):
     if name == "haar":
         return HaarDetector()
@@ -35,14 +40,14 @@ def process_image(detector, source: str, output: str, save: bool, display: bool,
             aligned = align_face(result.image, face.landmarks)
             base = os.path.splitext(os.path.basename(source))[0]
             align_path = os.path.join(output, f"{base}_face{i}_aligned.jpg")
-            cv2.imwrite(align_path, aligned)
+            imwrite(align_path, aligned)
             print(f"    对齐结果: {align_path}")
     if save or display:
         vis = draw_faces(result.image, result, show_landmarks=True)
         base = os.path.splitext(os.path.basename(source))[0]
         if save:
             out_path = os.path.join(output, f"{base}_result.jpg")
-            cv2.imwrite(out_path, vis)
+            imwrite(out_path, vis)
             print(f"结果已保存: {out_path}")
         if display:
             cv2.imshow("FaceScan", vis)
