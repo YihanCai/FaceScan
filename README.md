@@ -41,9 +41,11 @@ FaceScan/
 ├── detector/            # Detection module
 │   ├── base.py          # Abstract base class & data models
 │   ├── haar.py          # Haar Cascade detector
-│   └── mediapipe.py     # MediaPipe detector (optional)
+│   ├── mediapipe.py     # MediaPipe face detector
+│   └── facemesh.py      # FaceMesh 478-point landmark detector
 ├── utils/               # Utilities
-│   ├── draw.py          # Bbox / FPS drawing
+│   ├── draw.py          # Bbox / landmarks / FPS drawing
+│   ├── align.py         # Face alignment & cropping
 │   └── exporter.py      # JSON / CSV export
 ├── models/              # Pretrained model files
 ├── data/                # Test images / videos
@@ -57,9 +59,8 @@ FaceScan/
 | Phase | Status | Description |
 |-------|--------|-------------|
 | Phase 1 | ✅ Done | Basic detection (image, video, camera) |
-| Phase 2 | ⏳ Next | Landmarks, alignment, batch processing |
-| Phase 3 | ❌ | Face recognition, Web UI |
-| Phase 4 | ❌ | Docker, ONNX optimization, REST API |
+| Phase 2 | ✅ Done | Landmarks, alignment, batch processing |
+| Phase 3 | ⏳ Next | Face recognition, Web UI |
 
 ## License
 
