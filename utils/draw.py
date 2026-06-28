@@ -14,7 +14,8 @@ _COLORS = [
 
 
 def draw_faces(image: np.ndarray, result: DetectionResult,
-               show_confidence: bool = True, show_landmarks: bool = True) -> np.ndarray:
+               show_confidence: bool = True, show_landmarks: bool = True,
+               landmark_color: tuple = (0, 255, 255)) -> np.ndarray:
     vis = image.copy()
     for i, face in enumerate(result.faces):
         x, y, w, h = face.bbox
@@ -26,7 +27,7 @@ def draw_faces(image: np.ndarray, result: DetectionResult,
                         cv2.FONT_HERSHEY_SIMPLEX, 0.6, color, 2)
         if show_landmarks and face.landmarks:
             for lx, ly in face.landmarks:
-                cv2.circle(vis, (lx, ly), 3, color, -1)
+                cv2.circle(vis, (lx, ly), 2, landmark_color, -1)
     label = f"Faces: {result.count}"
     cv2.putText(vis, label, (12, 30),
                 cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
