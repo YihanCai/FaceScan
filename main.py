@@ -139,7 +139,7 @@ def process_video_or_camera(detector, source, output: str, save: bool, display: 
 
 def main():
     parser = argparse.ArgumentParser(description="FaceScan - 人脸检测系统")
-    parser.add_argument("--mode", choices=["image", "video", "camera", "batch"],
+    parser.add_argument("--mode", choices=["image", "video", "camera", "batch", "gui"],
                         default="image", help="运行模式")
     parser.add_argument("--source", "-s", default="",
                         help="输入源：图片路径 / 视频路径 / 摄像头ID / 图片目录")
@@ -158,6 +158,12 @@ def main():
     args = parser.parse_args()
 
     os.makedirs(args.output, exist_ok=True)
+
+    if args.mode == "gui":
+        from gui import FaceScanGUI
+        FaceScanGUI().run()
+        return
+
     detector = get_detector(args.detector)
 
     try:
