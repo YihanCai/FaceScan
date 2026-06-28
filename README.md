@@ -8,8 +8,12 @@ A face detection system based on computer vision and deep learning. Supports det
 - **Video Detection** — process video files frame by frame
 - **Real-time Camera** — live face detection with webcam
 - **Multi-face Support** — detects multiple faces simultaneously
+- **Face Landmarks** — 478-point facial landmark detection
+- **Face Alignment** — auto-rotate and crop faces
+- **Batch Processing** — process entire folders at once
 - **Result Export** — save results as JSON or CSV
-- **Dual Detectors** — Haar Cascade (default, zero dependencies) and MediaPipe (higher accuracy)
+- **Desktop GUI** — user-friendly Tkinter interface
+- **Dual Detectors** — Haar Cascade, MediaPipe, FaceMesh
 
 ## Quick Start
 
@@ -29,9 +33,15 @@ python main.py --mode video --source video.mp4 --save
 # Export detection results
 python main.py --mode video --source video.mp4 --export json
 
-# Use MediaPipe detector (requires: pip install mediapipe)
-python main.py --mode image --source data/lena.jpg --detector mediapipe
+# Launch desktop GUI
+python main.py --mode gui
 ```
+
+Advanced usage:
+
+```bash
+# Use facemesh detector for landmarks
+python main.py --mode image --source data/lena.jpg --detector facemesh --display
 
 ## Project Structure
 
@@ -47,6 +57,9 @@ FaceScan/
 │   ├── draw.py          # Bbox / landmarks / FPS drawing
 │   ├── align.py         # Face alignment & cropping
 │   └── exporter.py      # JSON / CSV export
+├── gui/                 # Desktop GUI
+│   ├── __init__.py
+│   └── main_window.py   # Tkinter main window
 ├── models/              # Pretrained model files
 ├── data/                # Test images / videos
 ├── output/              # Detection results
@@ -60,7 +73,8 @@ FaceScan/
 |-------|--------|-------------|
 | Phase 1 | ✅ Done | Basic detection (image, video, camera) |
 | Phase 2 | ✅ Done | Landmarks, alignment, batch processing |
-| Phase 3 | ⏳ Next | Desktop GUI (Tkinter/PyQt) |
+| Phase 3 | ✅ Done | Desktop GUI (Tkinter) |
+| Phase 4 | ❌ | Future enhancements |
 
 ## License
 
