@@ -194,7 +194,10 @@ def main():
                     export_csv(results, out_path)
                 print(f"结果已导出: {out_path}")
     finally:
-        detector.release()
+        try:
+            detector.release()
+        except Exception:
+            pass
 
 
 if __name__ == "__main__":
