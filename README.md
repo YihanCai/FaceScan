@@ -60,7 +60,7 @@ FaceScan/
 |-------|--------|-------------|
 | Phase 1 | ✅ Done | Basic detection (image, video, camera) |
 | Phase 2 | ✅ Done | Landmarks, alignment, batch processing |
-| Phase 3 | ⏳ Next | Face recognition, Web UI |
+| Phase 3 | ⏳ Next | Desktop GUI (Tkinter/PyQt) |
 
 ## License
 
