@@ -29,7 +29,7 @@ class BaseDetector(ABC):
         ...
 
     def detect_from_file(self, path: str) -> DetectionResult:
-        image = cv2.imread(path)
+        image = cv2.imdecode(np.fromfile(path, dtype=np.uint8), cv2.IMREAD_COLOR)
         if image is None:
             raise FileNotFoundError(f"无法读取图片: {path}")
         return self.detect(image)
